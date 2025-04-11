@@ -14,4 +14,4 @@ We can consider the [Huggingface transformers library](https://github.com/huggin
 In this part, I briefly describe the model structure and architecture to address the sentiment classification task. There are several popular pre-trained language model encoders to solve this problem, such as BERTbase, DistilBERT, and Roberta. Encoders are a great advantage as they allow us to compress the text into a latent space vector, valid for several tasks.
 
 I developed a general architecture of the model below:
-![model architecture](https://drive.google.com/file/d/1LzszHVnSSBAgg4EGPbsXDdmH2O95c7MX/view?usp=drive_link)
+![model architecture](Img/ModelArchitecture.png)
