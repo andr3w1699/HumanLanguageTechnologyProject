@@ -17,3 +17,7 @@ In this part, I briefly describe the model architecture to address the sentiment
 
 I developed a general architecture of the model below:
 ![model architecture](Img/ModelArchitecture.png)
+
+# Text Processing 
+
+I uploaded a notebook where i've done some text processing on the dataset: Lowercasing, Removing Punctuation, Removing stopwords, Removing special characters. I also used SpaCy for try some lemmatization.  
