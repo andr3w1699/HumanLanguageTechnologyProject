@@ -1,0 +1,6 @@
+# transformers is a library of pretrained natural language processing, computer vision, audio, and multimodal models for inference and training.
+# Use transformers to train models on your data, build inference applications, and generate text with large language models
+transformers
+datasets
+scikit-learn
+torch
