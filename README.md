@@ -30,6 +30,40 @@ In this part, I briefly describe the model architecture to address the sentiment
 I developed a general architecture of the model below:
 ![model architecture](Img/ModelArchitecture.png)
 
+# Classical + Deep Representation Models 
+## Word Embeddings (Static Representation) 
+Word2Vec / GloVe are methods to map words into fixed-length dense vectors. These vectors are static: the same word always has the same vector, no matter the context but they capture semantic similarity. We can use libraries like spacy, nltk or torchtext. On the top of it, we can use RNNs, models that process sequences word by word mantaining a hidden state. Among them we can use:
+- LSTM (Long Short Term Memory): that are ables to handle long-term dependencies
+- BiLSTM (Bidirectional LSTM): processes the sequence forward and backward this gives more context, looks at both left and right of a word
+- GRU (Gated Recurrent Unit): a simpler, faster alternative to LSTM
+
+The workflow followed by this approach should be: 
+We start from the raw sentence (Text Data) and we have also its label. Then we perform a text preprocessing step (lowercase, remove punctuation if needed, tokenize into words). You can use libraries like `nltk`, `spaCy`, or `torchtext` for this step. Then we have to convert Words to Vectors (Embeddings): for such task we can use use a pretrained embedding matrix like GloVe or Word2Vec. Each word gets mapped to a fixed vector, e.g. 100 or 300 dimensions and words not in the embedding are marked using <UNK> (unknown token). Then for each sequence of text in the dataset we can create a 2D Matrix: (sequence length) × (embedding dim). Then you have to feed into a RNN model (LSTM, BiLSTM or GRU), this reads each word vector sequentially, updating its hidden state. Instead of using just the final hidden state, you can apply attention over all hidden state at each time step or pooling. Last a classification layer: take the output (from attention or final LSTM state), and feed it into a fully connected layer. You can train the whole model using cross-entropy loss on your labels (Labels = sentiment classes e.g., 1–5 stars or positive/negative, Optimizer = Adam or SGD, Loss = CrossEntropyLoss). To implement we can use PyTorch. 
+
+# Parse-Tree-Based Models (Syntactic-Aware Models)
+These models leverage syntax trees (like constituency or dependency trees) to understand sentence structure and capture things like negation, sarcasm, or subtle sentiment shifts more accurately than flat models.
+TreeLSTM is a variant of LSTM that follows the structure of a syntactic parse tree instead of a flat sequence. It’s designed to process hierarchical input, where each node (e.g., noun phrase, verb phrase) aggregates the information from its children.
+
+Key Paper:
+"Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks"
+📎 Tai, Socher, Manning (Stanford) – 2015
+📄 https://arxiv.org/abs/1503.00075
+
+libraries and tools: 
+- Parse Trees (constituency/dependency):	nltk, stanza, benepar
+- TreeLSTM Implementations: treelstm-pytorch, torch-struct, custom PyTorch
+
+# Parameter-Efficient Fine-Tuning Techniques (PEFT)
+Instead of fine-tuning all parameters of large transformer models, PEFT techniques allow training only a small subset, making them faster and lighter — ideal for low-resource scenarios.
+
+Techniques Overview
+Adapters: add small trainable layers between transformer blocks, it is modular, reusable	but has a slight overhead
+LoRA:	Inject low-rank matrices into attention layers.	Very memory efficient	but slightly harder to implement
+Prompt Tuning: Learn special prompt tokens, freeze the base model. Minimal parameter changes	but needs large data for good results
+BitFit: Train only bias terms in the model: Super lightweight, easy to apply	but slightly less accurate in some tasks
+Tools for PEFT
+peft	--> HuggingFace's library for Adapters, LoRA, Prompt Tuning, etc.
+
 # Text Processing 
 
 I uploaded a notebook where i've done some text processing on the dataset: Lowercasing, Removing Punctuation, Removing stopwords, Removing special characters. I also used SpaCy for try some lemmatization.  
