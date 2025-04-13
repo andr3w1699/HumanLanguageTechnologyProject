@@ -30,8 +30,7 @@ In this part, I briefly describe the model architecture to address the sentiment
 I developed a general architecture of the model below:
 ![model architecture](Img/ModelArchitecture.png)
 
-# Classical + Deep Representation Models 
-## Word Embeddings (Static Representation) 
+# Classical Word Embeddings (Static Representation) + Deep Representation Models 
 Word2Vec / GloVe are methods to map words into fixed-length dense vectors. These vectors are static: the same word always has the same vector, no matter the context but they capture semantic similarity. We can use libraries like spacy, nltk or torchtext. On the top of it, we can use RNNs, models that process sequences word by word mantaining a hidden state. Among them we can use:
 - LSTM (Long Short Term Memory): that are ables to handle long-term dependencies
 - BiLSTM (Bidirectional LSTM): processes the sequence forward and backward this gives more context, looks at both left and right of a word
@@ -57,12 +56,13 @@ libraries and tools:
 Instead of fine-tuning all parameters of large transformer models, PEFT techniques allow training only a small subset, making them faster and lighter — ideal for low-resource scenarios.
 
 Techniques Overview
-Adapters: add small trainable layers between transformer blocks, it is modular, reusable	but has a slight overhead
-LoRA:	Inject low-rank matrices into attention layers.	Very memory efficient	but slightly harder to implement
-Prompt Tuning: Learn special prompt tokens, freeze the base model. Minimal parameter changes	but needs large data for good results
-BitFit: Train only bias terms in the model: Super lightweight, easy to apply	but slightly less accurate in some tasks
-Tools for PEFT
-peft	--> HuggingFace's library for Adapters, LoRA, Prompt Tuning, etc.
+- Adapters: add small trainable layers between transformer blocks, it is modular, reusable	but has a slight overhead
+- LoRA:	Inject low-rank matrices into attention layers.	Very memory efficient	but slightly harder to implement
+- Prompt Tuning: Learn special prompt tokens, freeze the base model. Minimal parameter changes	but needs large data for good results
+- BitFit: Train only bias terms in the model: Super lightweight, easy to apply	but slightly less accurate in some tasks
+
+Tools for PEFT:
+- peft	--> HuggingFace's library for Adapters, LoRA, Prompt Tuning, etc.
 
 # Text Processing 
 
