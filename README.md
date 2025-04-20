@@ -1,6 +1,12 @@
 # HumanLanguageTechnologyProject
 This is the repo for the Human Language Technology course final project, group 4
 
+# W2V-LSTM:
+I uploaded in the folder HolyMolny two notebooks. 
+The first one is the the text processing, i've cleaned the original dataset and i did the lemmatization. Then i sampled it and took 250k rows for the training and 30k rows for the test. 
+The second notebook is W2V. I created the embedding dataset for training and test that will be used by the LSTM
+The datasets are too big (156MB compressed), so i have them on my google drive if you need them text me.
+
 # Dataset (draft)
 To download the dataset go to this link: 
 https://drive.google.com/drive/folders/0Bz8a_Dbh9Qhbfll6bVpmNUtUcFdjYmF2SEpmZUZUcVNiMUw1TWN6RDV3a0JHT3kxLVhVR2M?resourcekey=0-TLwzfR2O-D2aPitmn5o9VQ and look for file:  amazon_review_full_csv.tar.gz
@@ -64,6 +70,4 @@ Techniques Overview
 Tools for PEFT:
 - peft	--> HuggingFace's library for Adapters, LoRA, Prompt Tuning, etc.
 
-# Text Processing 
 
-I uploaded a notebook where i've done some text processing on the dataset: Lowercasing, Removing Punctuation, Removing stopwords, Removing special characters. I also used SpaCy for try some lemmatization.  
