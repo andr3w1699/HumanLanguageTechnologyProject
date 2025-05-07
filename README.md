@@ -63,7 +63,7 @@ Instead of fine-tuning all parameters of large transformer models, PEFT techniqu
 
 Techniques Overview
 - Adapters: add small trainable layers between transformer blocks, it is modular, reusable	but has a slight overhead
-- LoRA:	Inject low-rank matrices into attention layers.	Very memory efficient	but slightly harder to implement
+- LoRA:	Inject low-rank matrices into attention layers.	Very memory efficient but slightly harder to implement
 - Prompt Tuning: Learn special prompt tokens, freeze the base model. Minimal parameter changes	but needs large data for good results
 - BitFit: Train only bias terms in the model: Super lightweight, easy to apply	but slightly less accurate in some tasks
 
